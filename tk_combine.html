@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAUD TK PKK Siti Chotijah</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Neue', cursive;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body {
+    background-color: #E8F5FF;
+    background-image: 
+        radial-gradient(#7a88ad 2px, transparent 2px),
+        radial-gradient(#B4F8C8 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(119, 102, 180, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.nav-logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    color: #FFD5E5;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(rgba(119, 102, 180, 0.8), rgba(71, 99, 150, 0.8)), url('/api/placeholder/1920/1080');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+    color: white;
+    overflow-x: hidden;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Sections */
+section {
+    padding: 100px 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: #7766b4;
+    margin-bottom: 1rem;
+}
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 100%;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 20px;
+    border: 5px solid #B4F8C8;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Teacher Section */
+.teacher-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 100%;
+}
+
+.teacher-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 5px solid #FFD5E5;
+    transition: transform 0.3s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-10px);
+}
+
+.teacher-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 5px solid #B4F8C8;
+}
+
+/* Announcements Section */
+.announcements {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 4rem auto;
+    border: 5px solid #d5ddff;
+    max-width: 1000px;
+    width: 90%;
+}
+
+.announcement-item {
+    background-color: #F8F9FA;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #92D5E6;
+    transition: transform 0.3s ease;
+}
+
+.announcement-item:hover {
+    transform: translateX(10px);
+}
+
+.announcement-item h3 {
+    color: #7766b4;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.announcement-item p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Programs Section */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 100%;
+}
+
+.program-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 5px solid #92D5E6;
+}
+
+.program-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.program-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.program-content {
+    padding: 20px;
+}
+
+/* Map */
+.map-container {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 4rem auto;
+    border: 5px solid #92D5E6;
+    max-width: 1200px;
+    width: 90%;
+}
+
+.map-wrapper {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 15px;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #7766b4, #476396);
+    color: white;
+    padding: 50px 0 20px;
+    margin-top: 2rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.footer-section h3 {
+    color: #FFD5E5;
+    margin-bottom: 20px;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100;
+}
+
+.mobile-menu-btn span {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .announcements {
+        padding: 2rem;
+        width: 95%;
+        margin: 2rem auto;
+    }
+
+    .announcement-item {
+        padding: 1.2rem;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(119, 102, 180, 0.98);
+        padding: 80px 20px 20px;
+        flex-direction: column;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        right: 0;
+        display: flex;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .map-container {
+        padding: 1.5rem;
+        margin: 2rem auto;
+        width: 92%;
+    }
+
+    .map-wrapper {
+        margin: 0.5rem auto;
+    }
+
+    .map-wrapper iframe {
+        height: 350px;
+    }
+
+    .programs-grid,
+    .teacher-grid {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        width: 94%;
+        padding: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">TK PKK Siti Chotijah</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="#beranda">🏠 Beranda</a>
+                <a href="#tentang">👥 Tentang</a>
+                <a href="#guru">👩‍🏫 Guru</a>
+                <a href="#program">📚 Program</a>
+                <a href="#galeri">🎨 Galeri</a>
+                <a href="#lokasi">📍 Lokasi</a>
+                <a href="#kontak">📞 Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero" id="beranda">
+        <div class="hero-content">
+            <h1>PAUD TK PKK Siti Chotijah</h1>
+            <p>Belajar dan Bermain Bersama! 🌟</p>
+            <p>Membentuk Generasi Cerdas, Kreatif, dan Berakhlak Mulia</p>
+        </div>
+    </div>
+    <section class="announcements">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Pengumuman 📢</h2>
+            </div>
+            <div class="announcement-item" data-aos="fade-up">
+                <h3>🎓 Pendaftaran Siswa Baru 2025/2026</h3>
+                <p>Telah dibuka pendaftaran siswa baru untuk tahun ajaran 2025/2026. Segera daftarkan putra-putri Anda!</p>
+            </div>
+            <div class="announcement-item" data-aos="fade-up" data-aos-delay="100">
+                <h3>👨‍👩‍👦‍👦 Kegiatan Parenting</h3>
+                <p>Akan diadakan kegiatan parenting dengan tema "Mendampingi Anak di Era Digital" pada hari Sabtu, 15 Februari 2025.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tentang">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Tentang Kami</h2>
+                <p>Mengenal lebih dekat dengan TK PKK Siti Chotijah</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right">
+                    <img src="https://th.bing.com/th/id/OIP.AAYuy7NvEsp6KCuNxXdoAgHaFj?rs=1&pid=ImgDetMain" alt="Suasana Sekolah">
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <h3>Visi & Misi</h3>
+                    <p>Visi kami adalah menciptakan generasi yang cerdas, kreatif, dan berakhlak mulia melalui pendidikan yang berkualitas dan menyenangkan.</p>
+                    <h4>Misi Kami:</h4>
+                    <ul>
+                        <li>Menyelenggarakan pendidikan yang menyenangkan</li>
+                        <li>Mengembangkan kreativitas dan potensi anak</li>
+                        <li>Membentuk karakter dan akhlak mulia</li>
+                        <li>Mempersiapkan anak untuk pendidikan lebih lanjut</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guru">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Guru-Guru Kami</h2>
+                <p>Mengenal para pendidik yang dedikasi</p>
+            </div>
+            <div class="teacher-grid">
+                <div class="teacher-card" data-aos="fade-up">
+                    <img src="/api/placeholder/200/200" alt="Kepala Sekolah">
+                    <h3>Ibu Siti Chotijah</h3>
+                    <p>Kepala Sekolah</p>
+                    <p>✨ Pengalaman mengajar 20 tahun</p>
+                </div>
+                <div class="teacher-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="/api/placeholder/200/200" alt="Guru PAUD">
+                    <h3>Ibu Fatimah</h3>
+                    <p>Guru PAUD</p>
+                    <p>✨ Pengalaman mengajar 8 tahun</p>
+                </div>
+                <div class="teacher-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="/api/placeholder/200/200" alt="Guru TK">
+                    <h3>Ibu Khadijah</h3>
+                    <p>Guru TK</p>
+                    <p>✨ Pengalaman mengajar 10 tahun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Program Unggulan</h2>
+                <p>Program-program terbaik untuk putra-putri tercinta</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card" data-aos="fade-up">
+                    <div class="program-image">
+                        <img src="/api/placeholder/400/300" alt="Program Akademik">
+                    </div>
+                    <div class="program-content">
+                        <h3>Program Akademik</h3>
+                        <p>Pembelajaran menyenangkan dengan metode bermain sambil belajar</p>
+                    </div>
+                </div>
+                <div class="program-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="program-image">
+                        <img src="/api/placeholder/400/300" alt="Program Karakter">
+                    </div>
+                    <div class="program-content">
+                        <h3>Pembentukan Karakter</h3>
+                        <p>Pembentukan akhlak mulia dan kepribadian yang baik</p>
+                    </div>
+                </div>
+                <div class="program-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="program-image">
+                        <img src="/api/placeholder/400/300" alt="Program Keterampilan">
+                    </div>
+                    <div class="program-content">
+                        <h3>Pengembangan Keterampilan</h3>
+                        <p>Mengembangkan kreativitas dan keterampilan motorik</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lokasi" class="map-container">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Lokasi Kami</h2>
+                <p>Temukan kami di sini 📍</p>
+            </div>
+            <div class="map-wrapper" data-aos="fade-up">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d988.2625533930637!2d112.69326416751893!3d-7.943068529480165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTYnMzUuMSJTIDExMsKwNDEnMzUuNyJF!5e0!3m2!1sen!2sid!4v1643587200000!5m2!1sen!2sid"
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius: 20px;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TK PKK Siti Chotijah</h3>
+                <p>Membentuk generasi cerdas, kreatif, dan berakhlak mulia</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>📍 Jl. Asrikaton, Kec. Pakis, Kabupaten Malang</p>
+                <p>📞 (0341) 123-456</p>
+                <p>✉️ tk.sitichotijah@gmail.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Jam Operasional</h3>
+                <h2>07.00 - 11.00</h2>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+        // Inisialisasi AOS
+AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false
+});
+
+// Smooth scroll untuk navigasi
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Tutup menu mobile jika terbuka
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        }
+    });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.padding = '0.5rem 0';
+        navbar.style.background = 'rgba(119, 102, 180, 0.98)';
+    } else {
+        navbar.style.padding = '1rem 0';
+        navbar.style.background = 'rgba(119, 102, 180, 0.95)';
+    }
+});
+</script>
+</body>
+</html>
