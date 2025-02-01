@@ -79,18 +79,92 @@ body {
 
 /* Hero Section */
 .hero {
+    position: relative;
     min-height: 100vh;
     width: 100vw;
-    background: linear-gradient(rgba(119, 102, 180, 0.8), rgba(71, 99, 150, 0.8)), url('/api/placeholder/1920/1080');
-    background-size: cover;
-    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding-top: 80px;
     color: white;
-    overflow-x: hidden;
+    overflow: hidden;
+}
+
+.slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(119, 102, 180, 0.7), /* Menurunkan opacity gradient */
+        rgba(71, 99, 150, 0.7)
+    );
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.slide-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+}
+
+.slide-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.slide-dot:hover {
+    transform: scale(1.2);
+}
+
+.slide-dot.active {
+    background: white;
+    transform: scale(1.2);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .hero-content {
@@ -103,6 +177,7 @@ body {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content p {
@@ -249,6 +324,95 @@ section {
     padding: 20px;
 }
 
+/* Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    aspect-ratio: 4/3;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(119, 102, 180, 0.9);
+    color: white;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 /* Map */
 .map-container {
     background-color: white;
@@ -322,6 +486,14 @@ footer {
     transition: all 0.3s ease;
 }
 
+
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        padding: 20px;
+    }
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .mobile-menu-btn {
@@ -383,6 +555,12 @@ footer {
     .teacher-grid {
         padding: 0 15px;
     }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        padding: 15px;
+        gap: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -415,6 +593,23 @@ footer {
     </nav>
 
     <div class="hero" id="beranda">
+        <div class="slideshow">
+            <div class="slide active" style="background-image: url('/TK/assets/Makoto.jpg')"></div>
+            <div class="slide" style="background-image: url('/TK/assets/Kirijo.jpg')"></div>
+            <div class="slide" style="background-image: url('/TK/assets/Yukari.jpg')"></div>
+        </div>
+        <div class="gradient-overlay"></div>
+        <div class="slide-arrow prev">
+            <i class="fas fa-chevron-left" style="color: white; font-size: 24px;"></i>
+        </div>
+        <div class="slide-arrow next">
+            <i class="fas fa-chevron-right" style="color: white; font-size: 24px;"></i>
+        </div>
+        <div class="slide-nav">
+            <div class="slide-dot active"></div>
+            <div class="slide-dot"></div>
+            <div class="slide-dot"></div>
+        </div>
         <div class="hero-content">
             <h1>PAUD TK PKK Siti Chotijah</h1>
             <p>Belajar dan Bermain Bersama! 🌟</p>
@@ -471,19 +666,19 @@ footer {
             <div class="teacher-grid">
                 <div class="teacher-card" data-aos="fade-up">
                     <img src="/api/placeholder/200/200" alt="Kepala Sekolah">
-                    <h3>Ibu Siti Chotijah</h3>
+                    <h3>Ibu Sutji Tutik Srihayanti</h3>
                     <p>Kepala Sekolah</p>
                     <p>✨ Pengalaman mengajar 20 tahun</p>
                 </div>
                 <div class="teacher-card" data-aos="fade-up" data-aos-delay="100">
                     <img src="/api/placeholder/200/200" alt="Guru PAUD">
-                    <h3>Ibu Fatimah</h3>
+                    <h3>Ibu Sinta Wijayantini</h3>
                     <p>Guru PAUD</p>
                     <p>✨ Pengalaman mengajar 8 tahun</p>
                 </div>
                 <div class="teacher-card" data-aos="fade-up" data-aos-delay="200">
                     <img src="/api/placeholder/200/200" alt="Guru TK">
-                    <h3>Ibu Khadijah</h3>
+                    <h3>Ibu Fita Agustiningsih</h3>
                     <p>Guru TK</p>
                     <p>✨ Pengalaman mengajar 10 tahun</p>
                 </div>
@@ -529,6 +724,67 @@ footer {
         </div>
     </section>
 
+    <section id="galeri">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Galeri Kegiatan</h2>
+                <p>Momen-momen berharga di TK PKK Siti Chotijah</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="/TK/assets/Junpei.jpg" alt="Kegiatan Mewarnai">
+                    <div class="gallery-caption">
+                        <h3>Kegiatan Mewarnai</h3>
+                        <p>Mengembangkan kreativitas anak melalui aktivitas mewarnai</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="/TK/assets/Akihiko.jpg" alt="Bermain Outdoor">
+                    <div class="gallery-caption">
+                        <h3>Bermain Outdoor</h3>
+                        <p>Aktivitas bermain di luar ruangan untuk kesehatan fisik</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="/TK/assets/Makoto.jpg" alt="Pembelajaran Interaktif">
+                    <div class="gallery-caption">
+                        <h3>Pembelajaran Interaktif</h3>
+                        <p>Belajar dengan metode yang menyenangkan</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="/TK/assets/Yukari.jpg" alt="Kegiatan Menari">
+                    <div class="gallery-caption">
+                        <h3>Kegiatan Menari</h3>
+                        <p>Pengembangan bakat seni dan motorik</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                    <img src="/TK/assets/Kirijo.jpg" alt="Membaca Bersama">
+                    <div class="gallery-caption">
+                        <h3>Membaca Bersama</h3>
+                        <p>Meningkatkan minat baca sejak dini</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+                    <img src="/TK/assets/Fuuka.jpg" alt="Kegiatan Berkebun">
+                    <div class="gallery-caption">
+                        <h3>Kegiatan Berkebun</h3>
+                        <p>Mengenal alam dan tanaman</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for gallery images -->
+        <div class="modal">
+            <span class="modal-close">&times;</span>
+            <div class="modal-content">
+                <img src="" alt="Gallery Image">
+            </div>
+        </div>
+    </section>
+
     <section id="lokasi" class="map-container">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -568,49 +824,112 @@ footer {
     </footer>
 
     <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slide-dot');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) index = 0;
+            if (index < 0) index = totalSlides - 1;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        // Auto slide
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Event listeners for arrows
+        document.querySelector('.slide-arrow.prev').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
+        document.querySelector('.slide-arrow.next').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+
+        // Event listeners for dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
         }
         // Inisialisasi AOS
-AOS.init({
-    duration: 800,
-    easing: 'ease-in-out',
-    once: true,
-    mirror: false
-});
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
 
-// Smooth scroll untuk navigasi
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth'
+        // Smooth scroll untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Tutup menu mobile jika terbuka
+                    const navLinks = document.querySelector('.nav-links');
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
             });
-            
-            // Tutup menu mobile jika terbuka
-            const navLinks = document.querySelector('.nav-links');
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        }
-    });
-});
+        });
 
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.padding = '0.5rem 0';
-        navbar.style.background = 'rgba(119, 102, 180, 0.98)';
-    } else {
-        navbar.style.padding = '1rem 0';
-        navbar.style.background = 'rgba(119, 102, 180, 0.95)';
-    }
-});
+        // Script Galeri
+        // Add Gallery Modal functionality
+        const modal = document.querySelector('.modal');
+        const modalImg = modal.querySelector('img');
+        const modalClose = modal.querySelector('.modal-close');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                modalImg.src = imgSrc;
+                modal.classList.add('active');
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '0.5rem 0';
+                navbar.style.background = 'rgba(119, 102, 180, 0.98)';
+            } else {
+                navbar.style.padding = '1rem 0';
+                navbar.style.background = 'rgba(119, 102, 180, 0.95)';
+            }
+        });
 </script>
 </body>
 </html>
