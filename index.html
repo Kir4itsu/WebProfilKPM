@@ -211,20 +211,174 @@ section {
 }
 
 /* About Section */
+.about-image-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-image-section img {
+    width: 100%;
+    border-radius: 20px;
+    border: 5px solid #7766b4;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-item i {
+    color: #7766b4;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.stat-item h4 {
+    color: #7766b4;
+    font-size: 1.5rem;
+    margin: 5px 0;
+}
+
+.stat-item p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, #7766b4, #476396);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.highlight-box h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: #FFD5E5;
+}
+
+.highlight-box p {
+    font-style: italic;
+    line-height: 1.6;
+}
+
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    align-items: center;
-    max-width: 100%;
+    align-items: start;
+    margin-top: 2rem;
 }
 
 .about-image img {
     width: 100%;
     border-radius: 20px;
-    border: 5px solid #B4F8C8;
-    max-width: 100%;
-    height: auto;
+    border: 5px solid #7766b4;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.02);
+}
+
+.about-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid #7766b4;
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateX(10px);
+}
+
+.about-card h3 {
+    color: #7766b4;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-card h3 i {
+    color: #FFD5E5;
+}
+
+.about-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-card ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.about-card ul li i {
+    color: #B4F8C8;
+    margin-top: 4px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item i {
+    font-size: 2rem;
+    color: #7766b4;
+    margin-bottom: 10px;
+}
+
+.feature-item h4 {
+    color: #7766b4;
+    margin-bottom: 5px;
+}
+
+.feature-item p {
+    font-size: 0.9rem;
+    color: #666;
 }
 
 /* Teacher Section */
@@ -440,28 +594,133 @@ section {
 }
 
 /* Footer */
+.footer-container {
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.footer-wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%237766b4' fill-opacity='1' d='M0,160L80,165.3C160,171,320,181,480,170.7C640,160,800,128,960,128C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Bubble animation */
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: rise 10s infinite ease-in;
+}
+
+.bubble:nth-child(1) { left: 10%; animation-duration: 8s; }
+.bubble:nth-child(2) { left: 20%; animation-duration: 5s; animation-delay: 1s; }
+.bubble:nth-child(3) { left: 35%; animation-duration: 7s; animation-delay: 2s; }
+.bubble:nth-child(4) { left: 50%; animation-duration: 11s; animation-delay: 0s; }
+.bubble:nth-child(5) { left: 65%; animation-duration: 6s; animation-delay: 3s; }
+.bubble:nth-child(6) { left: 80%; animation-duration: 9s; animation-delay: 2s; }
+.bubble:nth-child(7) { left: 90%; animation-duration: 7s; animation-delay: 1s; }
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+    }
+    50% {
+        transform: translate(100px, -500px);
+    }
+    100% {
+        bottom: 1080px;
+        transform: translateX(-200px);
+    }
+}
+
 footer {
     background: linear-gradient(135deg, #7766b4, #476396);
     color: white;
-    padding: 50px 0 20px;
-    margin-top: 2rem;
-    width: 100%;
+    position: relative;
     overflow: hidden;
+    padding: 50px 0 20px;
+    margin-top: -1px; /* Remove any gap */
 }
 
 .footer-content {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    width: 100%;
 }
 
 .footer-section h3 {
     color: #FFD5E5;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD5E5;
+}
+
+.footer-section p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-section i {
+    color: #FFD5E5;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.social-icons {
+    margin: 20px 0;
+}
+
+.social-icons a {
+    color: #FFD5E5;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px);
 }
 
 /* Mobile Menu */
@@ -508,6 +767,18 @@ footer {
 
     .announcement-item {
         padding: 1.2rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-card {
+        margin: 15px;
     }
 
     .nav-links {
@@ -561,12 +832,130 @@ footer {
         padding: 15px;
         gap: 20px;
     }
+
+    /* Container padding adjustments */
+    .container {
+        padding: 0 20px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Teacher section specific adjustments */
+    #guru .container {
+        padding: 0 15px;
+        max-width: 100%;
+    }
+
+    .teacher-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px;
+        width: calc(100% - 30px);
+        margin: 0 auto;
+    }
+
+    .teacher-card {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 320px; /* Control maximum width on mobile */
+        padding: 20px 15px;
+    }
+
+    /* Section title adjustments for mobile */
+    .section-title {
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+
+    /* Ensure proper spacing around teacher images */
+    .teacher-card img {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 15px;
+    }
+
+    /* Programs section specific adjustments */
+    #program .container {
+        padding: 0 15px;
+        max-width: 100%;
+    }
+
+    .programs-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px;
+        width: calc(100% - 30px);
+        margin: 0 auto;
+    }
+
+    .program-card {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 320px; /* Control maximum width on mobile */
+    }
+
+    /* Ensure proper spacing for program images */
+    .program-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .program-content {
+        padding: 20px 15px;
+    }
+
+    /* Section title adjustments */
+    #program .section-title {
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+
+    .footer-section {
+        margin: 0 15px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
 }
 
 @media (max-width: 480px) {
     .map-container {
         width: 94%;
         padding: 1rem;
+    }
+
+    #guru .container {
+        padding: 0 10px;
+    }
+
+    .teacher-grid {
+        padding: 0 10px;
+        width: calc(100% - 20px);
+    }
+
+    .teacher-card {
+        padding: 15px 10px;
+    }
+
+    #program .container {
+        padding: 0 10px;
+    }
+
+    .programs-grid {
+        padding: 0 10px;
+        width: calc(100% - 20px);
+    }
+
+    .program-card {
+        max-width: 300px;
+    }
+
+    .program-content {
+        padding: 15px 10px;
     }
 }
     </style>
@@ -639,19 +1028,77 @@ footer {
                 <p>Mengenal lebih dekat dengan TK PKK Siti Chotijah</p>
             </div>
             <div class="about-content">
-                <div class="about-image" data-aos="fade-right">
+                <div class="about-image-section" data-aos="fade-right">
                     <img src="https://th.bing.com/th/id/OIP.AAYuy7NvEsp6KCuNxXdoAgHaFj?rs=1&pid=ImgDetMain" alt="Suasana Sekolah">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <h4>100+</h4>
+                            <p>Lulusan</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <h4>35+</h4>
+                            <p>Tahun Pengalaman</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h4>5+</h4>
+                            <p>Guru Berpengalaman</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-quote-left"></i> Komitmen Kami</h3>
+                        <p>"Menciptakan lingkungan belajar yang menyenangkan dan mendidik untuk mempersiapkan generasi penerus bangsa yang cerdas, kreatif, dan berakhlak mulia."</p>
+                    </div>
                 </div>
+
                 <div class="about-text" data-aos="fade-left">
-                    <h3>Visi & Misi</h3>
-                    <p>Visi kami adalah menciptakan generasi yang cerdas, kreatif, dan berakhlak mulia melalui pendidikan yang berkualitas dan menyenangkan.</p>
-                    <h4>Misi Kami:</h4>
-                    <ul>
-                        <li>Menyelenggarakan pendidikan yang menyenangkan</li>
-                        <li>Mengembangkan kreativitas dan potensi anak</li>
-                        <li>Membentuk karakter dan akhlak mulia</li>
-                        <li>Mempersiapkan anak untuk pendidikan lebih lanjut</li>
-                    </ul>
+                    <div class="about-card">
+                        <h3><i class="fas fa-star"></i> Sejarah Kami</h3>
+                        <p>TK PKK Siti Chotijah didirikan pada bla bla</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3><i class="fas fa-eye"></i> Visi</h3>
+                        <p>Menjadi lembaga pendidikan anak usia dini yang unggul dalam membentuk generasi yang cerdas, kreatif, dan berakhlak mulia melalui pendidikan yang berkualitas dan menyenangkan.</p>
+                    </div>
+    
+                    <div class="about-card">
+                        <h3><i class="fas fa-bullseye"></i> Misi</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Menyelenggarakan pendidikan yang menyenangkan dengan metode bermain sambil belajar</li>
+                            <li><i class="fas fa-check-circle"></i> Mengembangkan kreativitas dan potensi setiap anak sesuai tahap perkembangannya</li>
+                            <li><i class="fas fa-check-circle"></i> Membentuk karakter dan akhlak mulia berbasis nilai-nilai agama dan budaya</li>
+                            <li><i class="fas fa-check-circle"></i> Mempersiapkan anak untuk siap memasuki jenjang pendidikan dasar</li>
+                        </ul>
+                    </div>
+    
+                    <div class="about-card">
+                        <h3><i class="fas fa-award"></i> Keunggulan Kami</h3>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-user-graduate"></i>
+                                <h4>Guru Profesional</h4>
+                                <p>Tenaga pendidik berpengalaman dan tersertifikasi</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shapes"></i>
+                                <h4>Fasilitas Lengkap</h4>
+                                <p>Sarana bermain memadai</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-heart"></i>
+                                <h4>Lingkungan Nyaman</h4>
+                                <p>Suasana belajar yang aman dan menyenangkan</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-brain"></i>
+                                <h4>Kurikulum Terintegrasi</h4>
+                                <p>Pengembangan aspek kognitif, afektif, dan psikomotorik</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -805,20 +1252,44 @@ footer {
     </section>
 
     <footer>
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>TK PKK Siti Chotijah</h3>
-                <p>Membentuk generasi cerdas, kreatif, dan berakhlak mulia</p>
+                <h3>🌈 TK PKK Siti Chotijah</h3>
+                <p><i class="fas fa-star"></i> Membentuk generasi cerdas</p>
+                <p><i class="fas fa-palette"></i> Kreatif dan berakhlak mulia</p>
             </div>
             <div class="footer-section">
-                <h3>Kontak</h3>
-                <p>📍 Jl. Asrikaton, Kec. Pakis, Kabupaten Malang</p>
-                <p>📞 (0341) 123-456</p>
-                <p>✉️ tk.sitichotijah@gmail.com</p>
+                <h3>🏫 Kontak Kami</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Jl. Asrikaton, Kec. Pakis, Kabupaten Malang</p>
+                <p><i class="fas fa-phone-alt"></i> (0341) 123-456</p>
+                <p><i class="fas fa-envelope"></i> tk.sitichotijah@gmail.com</p>
             </div>
             <div class="footer-section">
-                <h3>Jam Operasional</h3>
+                <h3>⏰ Jam Bermain</h3>
+                <p><i class="fas fa-sun"></i> Senin - Jumat</p>
                 <h2>07.00 - 11.00</h2>
+            </div>
+            <div class="footer-section">
+                <h3>📃 Berminat untuk mendaftarkan anak anda disini?</h3>
+                <a href="form.html"><i class="fas fa-pen-to-square"> Daftar Disini</i> </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TK PKK Siti Chotijah. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </footer>
