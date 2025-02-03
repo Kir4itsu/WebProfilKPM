@@ -382,33 +382,101 @@ section {
 }
 
 /* Teacher Section */
-.teacher-grid {
+.teacher-profile {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #7766b4, #476396);
+    border-radius: 15px;
+    overflow: hidden;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
 }
 
-.teacher-card {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 5px solid #FFD5E5;
-    transition: transform 0.3s ease;
+.teacher-image-container {
+    position: relative;
+    display: inline-block;
+    --shadow-url: url('/TK/assets/2b_smile.png'); /* Default */
 }
 
-.teacher-card:hover {
-    transform: translateY(-10px);
+.teacher-image-container img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 2;
 }
 
-.teacher-card img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    border: 5px solid #B4F8C8;
+.teacher-image-container::before {
+    content: "";
+    position: absolute;
+    top: 10px; /* Geser ke bawah */
+    left: -10px; /* Geser ke kiri */
+    width: 100%;
+    height: 100%;
+    background: var(--shadow-url) no-repeat center center / cover;
+    filter: grayscale(100%) opacity(0.5); /* Efek shadow */
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(119, 102, 180, 0.5), rgba(71, 99, 150, 0.3));
+}
+
+.teacher-content {
+    padding: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.teacher-name {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.teacher-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.info-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.thumbnails {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Announcements Section */
@@ -1110,24 +1178,37 @@ footer {
                 <h2>Guru-Guru Kami</h2>
                 <p>Mengenal para pendidik yang dedikasi</p>
             </div>
-            <div class="teacher-grid">
-                <div class="teacher-card" data-aos="fade-up">
-                    <img src="/api/placeholder/200/200" alt="Kepala Sekolah">
-                    <h3>Ibu Sutji Tutik Srihayanti</h3>
-                    <p>Kepala Sekolah</p>
-                    <p>✨ Pengalaman mengajar 20 tahun</p>
+
+            <!-- Teacher 1 -->
+            <div class="teacher-profile" data-aos="fade-up">
+                <div class="teacher-image-container">
+                    <img id="teacherImage" src="/TK/assets/2b_smile.png" alt="Kepala Sekolah">
+                    <div class="gradient-overlay"></div>
                 </div>
-                <div class="teacher-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="/api/placeholder/200/200" alt="Guru PAUD">
-                    <h3>Ibu Sinta Wijayantini</h3>
-                    <p>Guru PAUD</p>
-                    <p>✨ Pengalaman mengajar 8 tahun</p>
-                </div>
-                <div class="teacher-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="/api/placeholder/200/200" alt="Guru TK">
-                    <h3>Ibu Fita Agustiningsih</h3>
-                    <p>Guru TK</p>
-                    <p>✨ Pengalaman mengajar 10 tahun</p>
+                <div class="teacher-content">
+                    <h2 class="teacher-name" id="teacherName">Ibu Sutji Tutik Srihayanti</h2>
+                    <div class="teacher-info-grid">
+                        <div class="info-box">
+                            <h3 id="teacherPosition">Kepala Sekolah</h3>
+                        </div>
+                        <div class="info-box">
+                            <p id="teacherExperience">✨ 20 tahun pengalaman</p>
+                        </div>
+                    </div>
+                    <div class="thumbnails">
+                        <div class="thumbnail" onclick="updateTeacherInfo(0, '/TK/assets/2b_smile.png', 'Ibu Sutji Tutik Srihayanti', 'Kepala Sekolah', '✨ 20 tahun pengalaman')">
+                            <img src="/TK/assets/2b_smile.png" alt="Guru 1">
+                        </div>
+                        <div class="thumbnail" onclick="updateTeacherInfo(1, '/TK/assets/9s_smile.png', 'Ibu Sinta Wijayantini', 'Guru PAUD', '✨ 8 tahun pengalaman')">
+                            <img src="/TK/assets/9s_smile.png" alt="Guru 2">
+                        </div>
+                        <div class="thumbnail" onclick="updateTeacherInfo(2, '/TK/assets/9s-.png', 'Ibu Fita Agustiningsih', 'Guru TK', '✨ 10 tahun pengalaman')">
+                            <img src="/TK/assets/9s-.png" alt="Guru 3">
+                        </div>
+                        <div class="thumbnail" onclick="updateTeacherInfo(3, '/TK/assets/2b-.png', 'Ibu Maria Ulfa', 'Wakil Kepala Sekolah', '✨ 15 tahun pengalaman')">
+                            <img src="/TK/assets/2b-.png" alt="Guru 4">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1294,7 +1375,7 @@ footer {
         </div>
     </footer>
 
-    <script>
+      <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slide-dot');
@@ -1364,6 +1445,20 @@ footer {
                 }
             });
         });
+
+        //Script Guru
+        function updateTeacherInfo(index, imageUrl, name, position, experience) {
+            // Update gambar utama
+            document.querySelector('.teacher-image-container img').src = imageUrl;
+        
+            // Update teks informasi
+            document.getElementById('teacherName').textContent = name;
+            document.getElementById('teacherPosition').textContent = position;
+            document.getElementById('teacherExperience').textContent = experience;
+        
+            // Update shadow agar mengikuti gambar terbaru
+            document.querySelector('.teacher-image-container').style.setProperty('--shadow-url', `url('${imageUrl}')`);
+        }
 
         // Script Galeri
         // Add Gallery Modal functionality
