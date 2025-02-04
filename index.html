@@ -1570,7 +1570,7 @@ footer {
         </div>
     </footer>
 
-    <script>
+<script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slide-dot');
@@ -1666,7 +1666,7 @@ footer {
         galleryItems.forEach(item => {
             item.style.cursor = 'pointer'; // Show hand cursor
         });
-        
+
         let currentIndex = 0;
         const itemsPerView = window.innerWidth > 992 ? 3 : window.innerWidth > 576 ? 2 : 1;
         const maxIndex = Math.max(0, items.length - itemsPerView);
