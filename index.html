@@ -547,6 +547,23 @@ section {
 }
 
 /* Gallery */
+.gallery-slider {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.gallery-container {
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px;
+}
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -557,12 +574,13 @@ section {
 }
 
 .gallery-item {
+    flex: 0 0 calc(33.333% - 14px);
+    min-width: calc(33.333% - 14px);
     position: relative;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: transform 0.3s ease;
     aspect-ratio: 4/3;
 }
 
@@ -595,6 +613,37 @@ section {
 
 .gallery-item:hover .gallery-caption {
     transform: translateY(0);
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(119, 102, 180, 0.9);
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.slider-nav:hover {
+    background: rgba(119, 102, 180, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
 }
 
 /* Modal styles */
@@ -816,8 +865,14 @@ footer {
 
 @media (max-width: 992px) {
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         padding: 20px;
+        gap: 20px;
+    }
+
+    .gallery-item {
+        flex: 0 0 calc(50% - 10px);
+        min-width: calc(50% - 10px);
     }
 }
 
@@ -839,14 +894,77 @@ footer {
 
     .about-content {
         grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0;
+    }
+
+    .about-image-section {
+        padding: 10px;
+    }
+
+    .about-image-section img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0;
+    }
+
+    .stat-item {
+        padding: 10px;
+    }
+
+    .stat-item h4 {
+        font-size: 1.2rem;
+    }
+
+    .stat-item p {
+        font-size: 0.8rem;
+    }
+
+    .highlight-box {
+        margin: 15px 0;
+        padding: 15px;
+    }
+
+    .about-card {
+        margin: 10px 0;
+        padding: 15px;
     }
 
     .features-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
-    .about-card {
-        margin: 15px;
+    .feature-item {
+        padding: 15px;
+    }
+
+    /* Mengatasi overflow pada teks */
+    .about-card p, 
+    .highlight-box p,
+    .feature-item p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    /* Perbaikan untuk container */
+    .container {
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Perbaikan untuk section padding */
+    section {
+        padding: 40px 10px;
     }
 
     .nav-links {
@@ -865,11 +983,6 @@ footer {
     .nav-links.active {
         right: 0;
         display: flex;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        padding: 0 15px;
     }
 
     .hero-content h1 {
@@ -895,10 +1008,23 @@ footer {
         padding: 0 15px;
     }
 
+    #galeri .container {
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         padding: 15px;
-        gap: 20px;
+        gap: 15px;
+        width: calc(100% - 10px);
+        margin: 0 auto;
+    }
+
+    .gallery-item {
+        margin: 0 auto;
+        width: 100%;
     }
 
     /* Container padding adjustments */
@@ -1015,6 +1141,13 @@ footer {
     }
 }
 
+@media (max-width: 576px) {
+    .gallery-item {
+        flex: 0 0 calc(100% - 20px);
+        min-width: calc(100% - 20px);
+    }
+}
+
 @media (max-width: 480px) {
     .map-container {
         width: 94%;
@@ -1049,6 +1182,37 @@ footer {
 
     .program-content {
         padding: 15px 10px;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.1rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+
+    #galeri .container {
+        padding: 0 10px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+        gap: 15px;
+        width: calc(100% - 20px);
+    }
+
+    .gallery-item {
+        max-width: 100%;
     }
 }
     </style>
@@ -1248,7 +1412,7 @@ footer {
             <div class="programs-grid">
                 <div class="program-card" data-aos="fade-up">
                     <div class="program-image">
-                        <img src="https://assets.digination.id/crop/0x0:0x0/x/photo/2023/07/05/4226868449.jpg" alt="Program Akademik">
+                        <img src="/api/placeholder/400/300" alt="Program Akademik">
                     </div>
                     <div class="program-content">
                         <h3>Program Akademik</h3>
@@ -1257,7 +1421,7 @@ footer {
                 </div>
                 <div class="program-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="program-image">
-                        <img src="https://kelanakids.com/wp-content/uploads/2024/08/17-Gambar-Hewan-untuk-Menggambar-Anak-TK-PAUD-750x500.jpeg" alt="Program Karakter">
+                        <img src="/api/placeholder/400/300" alt="Program Karakter">
                     </div>
                     <div class="program-content">
                         <h3>Pembentukan Karakter</h3>
@@ -1283,52 +1447,66 @@ footer {
                 <h2>Galeri Kegiatan</h2>
                 <p>Momen-momen berharga di TK PKK Siti Chotijah</p>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-aos="fade-up">
-                    <img src="Junpei.jpg" alt="Kegiatan Mewarnai">
-                    <div class="gallery-caption">
-                        <h3>Kegiatan Mewarnai</h3>
-                        <p>Mengembangkan kreativitas anak melalui aktivitas mewarnai</p>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="Akihiko.jpg" alt="Bermain Outdoor">
-                    <div class="gallery-caption">
-                        <h3>Bermain Outdoor</h3>
-                        <p>Aktivitas bermain di luar ruangan untuk kesehatan fisik</p>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="Makoto.jpg" alt="Pembelajaran Interaktif">
-                    <div class="gallery-caption">
-                        <h3>Pembelajaran Interaktif</h3>
-                        <p>Belajar dengan metode yang menyenangkan</p>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                    <img src="Yukari.jpg" alt="Kegiatan Menari">
-                    <div class="gallery-caption">
-                        <h3>Kegiatan Menari</h3>
-                        <p>Pengembangan bakat seni dan motorik</p>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-                    <img src="Kirijo.jpg" alt="Membaca Bersama">
-                    <div class="gallery-caption">
-                        <h3>Membaca Bersama</h3>
-                        <p>Meningkatkan minat baca sejak dini</p>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
-                    <img src="Fuuka.jpg" alt="Kegiatan Berkebun">
-                    <div class="gallery-caption">
-                        <h3>Kegiatan Berkebun</h3>
-                        <p>Mengenal alam dan tanaman</p>
+            
+            <div class="gallery-slider" data-aos="fade-up">
+                <!-- Navigation Arrows -->
+                <button class="slider-nav prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Gallery Container -->
+                <div class="gallery-container">
+                    <div class="gallery-track">
+                        <div class="gallery-item">
+                            <img src="Junpei.jpg" alt="Kegiatan Mewarnai">
+                            <div class="gallery-caption">
+                                <h3>Kegiatan Mewarnai</h3>
+                                <p>Mengembangkan kreativitas anak melalui aktivitas mewarnai</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Akihiko.jpg" alt="Bermain Outdoor">
+                            <div class="gallery-caption">
+                                <h3>Bermain Outdoor</h3>
+                                <p>Aktivitas bermain di luar ruangan untuk kesehatan fisik</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Makoto.jpg" alt="Pembelajaran Interaktif">
+                            <div class="gallery-caption">
+                                <h3>Pembelajaran Interaktif</h3>
+                                <p>Belajar dengan metode yang menyenangkan</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Yukari.jpg" alt="Kegiatan Menari">
+                            <div class="gallery-caption">
+                                <h3>Kegiatan Menari</h3>
+                                <p>Pengembangan bakat seni dan motorik</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Kirijo.jpg" alt="Membaca Bersama">
+                            <div class="gallery-caption">
+                                <h3>Membaca Bersama</h3>
+                                <p>Meningkatkan minat baca sejak dini</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Fuuka.jpg" alt="Kegiatan Berkebun">
+                            <div class="gallery-caption">
+                                <h3>Kegiatan Berkebun</h3>
+                                <p>Mengenal alam dan tanaman</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
+    
         <!-- Modal for gallery images -->
         <div class="modal">
             <span class="modal-close">&times;</span>
@@ -1377,7 +1555,7 @@ footer {
                 <h3>🏫 Kontak Kami</h3>
                 <p><i class="fas fa-map-marker-alt"></i> Jl. Asrikaton, Kec. Pakis, Kabupaten Malang</p>
                 <p><i class="fas fa-phone-alt"></i> (0341) 123-456</p>
-                <p><i class="fas fa-envelope"></i> tkssitikhotijah@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> tk.sitichotijah@gmail.com</p>
             </div>
             <div class="footer-section">
                 <h3>⏰ Jam Bermain</h3>
@@ -1390,7 +1568,7 @@ footer {
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 TK PKK Siti Chotijah. All Rights Reserved.</p>
+            <p>&copy; 2024 TK PKK Siti Chotijah. All Rights Reserved.</p>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1400,7 +1578,7 @@ footer {
         </div>
     </footer>
 
-      <script>
+    <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slide-dot');
@@ -1486,12 +1664,49 @@ footer {
         }
 
         // Script Galeri
-        // Add Gallery Modal functionality
-        const modal = document.querySelector('.modal');
-        const modalImg = modal.querySelector('img');
-        const modalClose = modal.querySelector('.modal-close');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        // Gallery slider functionality
+        const track = document.querySelector('.gallery-track');
+        const items = document.querySelectorAll('.gallery-item');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        
+        let currentIndex = 0;
+        const itemsPerView = window.innerWidth > 992 ? 3 : window.innerWidth > 576 ? 2 : 1;
+        const maxIndex = Math.max(0, items.length - itemsPerView);
 
+        function updateSliderPosition() {
+            const itemWidth = items[0].offsetWidth + 20; // Including gap
+            track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+            
+            // Update button states
+            prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+            nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSliderPosition();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateSliderPosition();
+            }
+        });
+
+        // Update slider on window resize
+        window.addEventListener('resize', () => {
+            const newItemsPerView = window.innerWidth > 992 ? 3 : window.innerWidth > 576 ? 2 : 1;
+            const newMaxIndex = Math.max(0, items.length - newItemsPerView);
+            currentIndex = Math.min(currentIndex, newMaxIndex);
+            updateSliderPosition();
+        });
+
+        // Initialize slider position
+        updateSliderPosition();
         galleryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const imgSrc = item.querySelector('img').src;
