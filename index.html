@@ -615,6 +615,14 @@ section {
     transform: translateY(0);
 }
 
+.slider-container {
+    overflow: hidden; /* Pastikan ini tidak menyebabkan elemen hilang */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .slider-nav {
     position: absolute;
     top: 50%;
@@ -1452,42 +1460,42 @@ footer {
                 <!-- Gallery Container -->
                 <div class="gallery-container">
                     <div class="gallery-track">
-                        <div class="gallery-item">
+                        <div class="gallery-item"onclick="window.location.href='gallery_page.html?id=1'">
                             <img src="Junpei.jpg" alt="Kegiatan Mewarnai">
                             <div class="gallery-caption">
                                 <h3>Kegiatan Mewarnai</h3>
                                 <p>Mengembangkan kreativitas anak melalui aktivitas mewarnai</p>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item"onclick="window.location.href='gallery_page.html?id=2'">
                             <img src="Akihiko.jpg" alt="Bermain Outdoor">
                             <div class="gallery-caption">
                                 <h3>Bermain Outdoor</h3>
                                 <p>Aktivitas bermain di luar ruangan untuk kesehatan fisik</p>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item"onclick="window.location.href='gallery_page.html?id=3'">
                             <img src="Makoto.jpg" alt="Pembelajaran Interaktif">
                             <div class="gallery-caption">
                                 <h3>Pembelajaran Interaktif</h3>
                                 <p>Belajar dengan metode yang menyenangkan</p>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item"onclick="window.location.href='gallery_page.html?id=4'">
                             <img src="Yukari.jpg" alt="Kegiatan Menari">
                             <div class="gallery-caption">
                                 <h3>Kegiatan Menari</h3>
                                 <p>Pengembangan bakat seni dan motorik</p>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item"onclick="window.location.href='gallery_page.html?id=5'">
                             <img src="Kirijo.jpg" alt="Membaca Bersama">
                             <div class="gallery-caption">
                                 <h3>Membaca Bersama</h3>
                                 <p>Meningkatkan minat baca sejak dini</p>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item"onclick="window.location.href='gallery_page.html?id=6'">
                             <img src="Fuuka.jpg" alt="Kegiatan Berkebun">
                             <div class="gallery-caption">
                                 <h3>Kegiatan Berkebun</h3>
@@ -1570,7 +1578,7 @@ footer {
         </div>
     </footer>
 
-<script>
+    <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slide-dot');
