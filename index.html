@@ -1661,60 +1661,64 @@ footer {
         const items = document.querySelectorAll('.gallery-item');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
-        
+
         let currentIndex = 0;
         const itemsPerView = window.innerWidth > 992 ? 3 : window.innerWidth > 576 ? 2 : 1;
         const maxIndex = Math.max(0, items.length - itemsPerView);
 
         function updateSliderPosition() {
-            const itemWidth = items[0].offsetWidth + 20; // Including gap
-            track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-            
-            // Update button states
-            prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-            nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
+        const itemWidth = items[0].offsetWidth + 20; // Including gap
+        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+
+        // Update button states
+        prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+        nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
         }
 
         prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSliderPosition();
-            }
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = items.length - 1; // Kembali ke gambar terakhir jika mencapai awal
+        }
+        updateSliderPosition();
         });
 
         nextBtn.addEventListener('click', () => {
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateSliderPosition();
-            }
+        if (currentIndex < items.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Kembali ke gambar pertama jika mencapai akhir
+        }
+        updateSliderPosition();
         });
 
         // Update slider on window resize
         window.addEventListener('resize', () => {
-            const newItemsPerView = window.innerWidth > 992 ? 3 : window.innerWidth > 576 ? 2 : 1;
-            const newMaxIndex = Math.max(0, items.length - newItemsPerView);
-            currentIndex = Math.min(currentIndex, newMaxIndex);
-            updateSliderPosition();
+        const newItemsPerView = window.innerWidth > 992 ? 3 : window.innerWidth > 576 ? 2 : 1;
+        const newMaxIndex = Math.max(0, items.length - newItemsPerView);
+        currentIndex = Math.min(currentIndex, newMaxIndex);
+        updateSliderPosition();
         });
 
         // Initialize slider position
         updateSliderPosition();
         galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const imgSrc = item.querySelector('img').src;
-                modalImg.src = imgSrc;
-                modal.classList.add('active');
-            });
+        item.addEventListener('click', () => {
+            const imgSrc = item.querySelector('img').src;
+            modalImg.src = imgSrc;
+            modal.classList.add('active');
+        });
         });
 
         modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
+        modal.classList.remove('active');
         });
 
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
         });
 
         // Navbar scroll effect
